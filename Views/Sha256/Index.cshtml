@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "SHA-256 Özet Çıkarma";
+}
+
+<h2 class="text-center mt-4">SHA-256 Özet Çıkarma</h2>
+
+<div class="container mt-4">
+    <div class="row">
+
+        <!-- 🔤 Metin Özeti -->
+        <div class="col-md-6 mb-4">
+            <div class="card custom-card p-4 fade-in">
+                <h4 class="mb-3">📝 Metin Özeti</h4>
+                <form asp-action="TextHash" method="post">
+                    <div class="mb-3">
+                        <label>Metin</label>
+                        <textarea name="inputText" class="form-control" rows="4">@ViewBag.TextInput</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Özet Çıkar</button>
+                </form>
+
+                @if (ViewBag.HashResult != null)
+                {
+                    <div class="alert alert-success mt-3">
+                        <strong>SHA-256:</strong><br />
+                        @ViewBag.HashResult
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- 📄 Dosya Özeti -->
+        <div class="col-md-6 mb-4">
+            <div class="card custom-card p-4 fade-in">
+                <h4 class="mb-3">📁 Dosya Özeti</h4>
+                <form asp-action="FileHash" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <input type="file" name="file" class="form-control" />
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Özet Çıkar</button>
+                </form>
+
+                @if (ViewBag.FileHashResult != null)
+                {
+                    <div class="alert alert-info mt-3">
+                        <strong>@ViewBag.FileName</strong><br />
+                        SHA-256: @ViewBag.FileHashResult
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
