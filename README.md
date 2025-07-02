@@ -17,6 +17,10 @@ Kullanıcı arayüzüne metin girebilir veya dosya yükleyebilir.
 Sistem, girilen verinin SHA-512 hash’ini hesaplar ve gösterir.
 
 Kullanım alanı: Veri bütünlüğü kontrolü, parola saklama, dijital imza gibi güvenlik uygulamalarında yaygın olarak kullanılır.
+Kullanım Senaryoları Ekran Görüntüleri
+![image](https://github.com/user-attachments/assets/bb08dd5a-2f83-4a06-ad41-bc3249cf6bfa)
+![image](https://github.com/user-attachments/assets/46becd85-07f0-4560-a7e2-5e5b32a0d50a)
+
 
 ECC Modülü
 ![image](https://github.com/user-attachments/assets/0e6bbca0-18c1-4bc5-b667-545bd333dcf3)
@@ -48,6 +52,11 @@ Private key’ler gösterilmeyerek güvenlik sağlanmıştır.
 Ortak anahtar oluşturulmadan şifreleme/şifre çözme işlemleri aktif değildir.
 
 AES şifreleme/deşifreleme işlemi güvenli ortak anahtar kullanılarak gerçekleştirilir.
+
+Kullanım Senaryoları ekran görüntüleri:
+![image](https://github.com/user-attachments/assets/b30a6a7c-7e60-471b-b740-6e8995dffe02)
+![image](https://github.com/user-attachments/assets/a25d93c5-3568-4080-aa73-ac14107fbd45)
+
 
 Kullanılan Teknolojiler
 ASP.NET Core MVC (.NET 8)
