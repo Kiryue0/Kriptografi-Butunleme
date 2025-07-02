@@ -1,8 +1,8 @@
 ﻿@{
-    ViewData["Title"] = "SHA-256 Özet Çıkarma";
+    ViewData["Title"] = "SHA-512 Özet Çıkarma";
 }
 
-<h2 class="text-center mt-4">SHA-256 Özet Çıkarma</h2>
+<h2 class="text-center mt-4">SHA-512 Özet Çıkarma</h2>
 
 <div class="container mt-4">
     <div class="row">
@@ -22,8 +22,8 @@
                 @if (ViewBag.HashResult != null)
                 {
                     <div class="alert alert-success mt-3">
-                        <strong>SHA-256:</strong><br />
-                        @ViewBag.HashResult
+                        <strong>SHA-512:</strong><br />
+                        <span style="word-break: break-all;">@ViewBag.HashResult</span>
                     </div>
                 }
             </div>
@@ -44,7 +44,7 @@
                 {
                     <div class="alert alert-info mt-3">
                         <strong>@ViewBag.FileName</strong><br />
-                        SHA-256: @ViewBag.FileHashResult
+                        SHA-512: <span style="word-break: break-all;">@ViewBag.FileHashResult</span>
                     </div>
                 }
             </div>

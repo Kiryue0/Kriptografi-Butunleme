@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "ECC Simülasyonu";
+}
+
+<div class="row">
+    <!-- Kullanıcı A -->
+    <div class="col-md-6 border-end pe-4">
+        <h3>Kullanıcı A</h3>
+
+        <label>Private Key (Gizli)</label>
+        <textarea class="form-control" rows="3" readonly>@ViewBag.UserAPrivateKey</textarea>
+
+        <label class="mt-3">Public Key (Paylaşılabilir)</label>
+        <textarea class="form-control" rows="3" readonly>@ViewBag.UserAPublicKey</textarea>
+
+        <form method="post" asp-action="CreateSharedKeyA" class="mt-3">
+            <label>B'nin Public Key'i</label>
+            <textarea name="otherPublicKeyBase64" class="form-control" rows="3">@ViewBag.UserBPublicKey</textarea>
+            <button type="submit" class="btn btn-success mt-2">Eşle</button>
+        </form>
+
+        @if (TempData["MessageA"] != null)
+        {
+            <div class="alert alert-info mt-2">@TempData["MessageA"]</div>
+        }
+        @if (TempData["ErrorA"] != null)
+        {
+            <div class="alert alert-danger mt-2">@TempData["ErrorA"]</div>
+        }
+
+        @if (ViewBag.SharedKeyAtoB != null)
+        {
+            <div class="alert alert-success mt-3">
+                <strong>Ortak Anahtar (Base64):</strong><br />
+                @ViewBag.SharedKeyAtoB
+            </div>
+
+            <form method="post" asp-action="EncryptAtoB" class="mt-3">
+                <label>Şifrelenecek Mesaj</label>
+                <input type="text" name="plainText" class="form-control" />
+                <button type="submit" class="btn btn-primary mt-2">Şifrele ve Gönder</button>
+            </form>
+
+            @if (ViewBag.EncryptedMessageAtoB != null)
+            {
+                <div class="alert alert-warning mt-3">
+                    <strong>Şifrelenmiş Mesaj:</strong><br />
+                    @ViewBag.EncryptedMessageAtoB
+                </div>
+            }
+        }
+    </div>
+
+    <!-- Kullanıcı B -->
+    <div class="col-md-6 ps-4">
+        <h3>Kullanıcı B</h3>
+
+        <label>Private Key (Gizli)</label>
+        <textarea class="form-control" rows="3" readonly>@ViewBag.UserBPrivateKey</textarea>
+
+        <label class="mt-3">Public Key (Paylaşılabilir)</label>
+        <textarea class="form-control" rows="3" readonly>@ViewBag.UserBPublicKey</textarea>
+
+        <form method="post" asp-action="CreateSharedKeyB" class="mt-3">
+            <label>A'nın Public Key'i</label>
+            <textarea name="otherPublicKeyBase64" class="form-control" rows="3">@ViewBag.UserAPublicKey</textarea>
+            <button type="submit" class="btn btn-success mt-2">Eşle</button>
+        </form>
+
+        @if (TempData["MessageB"] != null)
+        {
+            <div class="alert alert-info mt-2">@TempData["MessageB"]</div>
+        }
+        @if (TempData["ErrorB"] != null)
+        {
+            <div class="alert alert-danger mt-2">@TempData["ErrorB"]</div>
+        }
+
+        @if (ViewBag.SharedKeyBtoA != null)
+        {
+            <div class="alert alert-success mt-3">
+                <strong>Ortak Anahtar (Base64):</strong><br />
+                @ViewBag.SharedKeyBtoA
+            </div>
+
+            <form method="post" asp-action="DecryptB" class="mt-3">
+                <label>Şifrelenmiş Mesaj</label>
+                <textarea name="encryptedMessageWithIV" class="form-control" rows="3">@ViewBag.EncryptedMessageAtoB</textarea>
+                <button type="submit" class="btn btn-primary mt-2">Mesajı Çöz</button>
+            </form>
+
+            @if (ViewBag.DecryptedMessageB != null)
+            {
+                <div class="alert alert-success mt-3">
+                    <strong>Çözülen Mesaj:</strong><br />
+                    @ViewBag.DecryptedMessageB
+                </div>
+            }
+        }
+    </div>
+</div>
